@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Te amo, Cu Roxo!</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffccf9, #cc99ff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .frase-topo {
+      position: fixed;
+      top: 20px;
+      width: 100%;
+      padding: 0 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      color: #660066;
+      font-weight: bold;
+      text-shadow: 1px 1px #fff;
+      z-index: 10;
+      line-height: 1.4;
+    }
+    .love-message {
+      position: absolute;
+      color: purple;
+      font-size: 2rem;
+      font-weight: bold;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-100px); }
+    }
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatHeart 5s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after  { top: 0;   left: -10px; }
+    @keyframes floatHeart {
+      0%   { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+    iframe {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      height: 200px;
+      border: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div class="frase-topo">
+    Camila você é meu caos favorito.<br>
+    Isso não é só um site, é uma desculpa para te mostrar de um jeito diferente que você faz meu mundo ficar mais bonito.
+  </div>
+  <div class="hearts">
+    <script>
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        document.querySelector('.hearts').appendChild(heart);
+      }
+    </script>
+  </div>
+  <script>
+    document.body.addEventListener('click', function(e) {
+      const message = document.createElement('div');
+      message.className = 'love-message';
+      message.style.left = e.clientX + 'px';
+      message.style.top  = e.clientY + 'px';
+      message.textContent = 'Te amo cu roxo!';
+      document.body.appendChild(message);
+      setTimeout(() => document.body.removeChild(message), 2000);
+    });
+  </script>
+  <iframe 
+    src="https://www.youtube.com/embed/jd-qI62gNJM?autoplay=1&loop=1&playlist=jd-qI62gNJM" 
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</body>
+</html>
